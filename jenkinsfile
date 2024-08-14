@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps{
+                git credentialsId: '4daf8800-4258-4993-8ef9-73650ec67fa4', url: 'https://github.com/Saipradeepchowdarykandula/sample-html-project.git'
+            }
+        }
+        stage('Install Apache') {
+            steps{
+                sh 'sudo apt install apache2 -y'
+            }
+
+        } 
+        stage('depoly') {
+            steps{
+                sh 'sudo cp -R * /var/www/html/'
+            }
+        } 
+    }
+   
+}
